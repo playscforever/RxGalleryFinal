@@ -5,10 +5,14 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 
 import cn.finalteam.rxgalleryfinal.imageloader.rotate.RotateTransformation;
 import cn.finalteam.rxgalleryfinal.ui.widget.FixImageView;
+
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 /**
  * Created by pengjianbo  Dujinyang on 2016/8/13 0013.
@@ -37,27 +41,26 @@ public class GlideImageLoader implements AbsImageLoader {
 //                .diskCacheStrategy(DiskCacheStrategy.NONE)
 //                .into(imageView);
 
+        RequestOptions options = new RequestOptions()
+                .placeholder(defaultDrawable)
+                .error(defaultDrawable)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .transform(new RotateTransformation(rotate))
+                .format(DecodeFormat.PREFER_RGB_565)
+                .disallowHardwareConfig()
+                .override(width, height);
         if (isGif) {
             Glide
                     .with(context)
                     .load(path)
-                    .placeholder(defaultDrawable)
-                    .error(defaultDrawable)
-                    .override(width, height)
-                    .crossFade()
-                    .transform(new RotateTransformation(context, rotate))
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .apply(options)
+                    .transition(withCrossFade())
                     .into(imageView);
         } else {
             Glide
                     .with(context)
                     .load(path)
-                    .asBitmap()
-                    .placeholder(defaultDrawable)
-                    .error(defaultDrawable)
-                    .override(width, height)
-                    .transform(new RotateTransformation(context, rotate))
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .apply(options)
                     .into(imageView);
         }
     }
