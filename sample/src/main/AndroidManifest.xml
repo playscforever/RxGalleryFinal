@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.finalteam.rxgalleryfinal.sample">
+    package="cn.yzj.rxgalleryfinal.sample">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -8,14 +8,14 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".IApplication"
+        android:name="cn.yzj.rxgalleryfinal.sample.IApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme_Light">
         <activity
-            android:name=".MainActivity"
+            android:name="cn.yzj.rxgalleryfinal.sample.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,14 +25,14 @@
         </activity>
 
         <activity
-            android:name="cn.finalteam.rxgalleryfinal.ui.activity.MediaActivity"
+            android:name="cn.yzj.rxgalleryfinal.ui.activity.MediaActivity"
             android:exported="true"
             android:theme="@style/Theme_Light.Test" />
 
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".imageloader.ImageLoaderActivity" />
+        <activity android:name="cn.yzj.rxgalleryfinal.sample.imageloader.ImageLoaderActivity" />
     </application>
 
 </manifest>

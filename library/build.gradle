@@ -58,74 +58,104 @@ dependencies {
 }
 
 //===================================upload jcenter=================================================
-def siteUrl = 'https://github.com/FinalTeam/RxGalleryFinal'
-def gitUrl = 'https://github.com/FinalTeam/RxGalleryFinal.git'
-group = "cn.finalteam.rxgalleryfinal"
 
-install {
-    repositories.mavenInstaller {
-        pom {
-            project {
-                packaging 'aar'
+apply plugin: 'com.android.library'
 
-                // Add your description here
-                name 'RxGalleryFinal'
-                description = 'dujinyang desc'
-                url siteUrl
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'RxGalleryFinalNew'
 
-                // Set your license
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'dujinyang'
-                        name 'dujinyang'
-                        email '309933706@qq.com'
-                    }
-                }
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
+    publishedGroupId = 'cn.yzj.rxgalleryfinal'
+    libraryName = 'RxGalleryFinalNew'
+    artifact = 'RxGalleryFinalNew'
 
-                }
-            }
-        }
-    }
+
+    libraryDescription = 'RxGalleryFinalNew desc'
+
+    siteUrl = 'https://github.com/playscforever/RxGalleryFinal'
+    gitUrl = 'https://github.com/playscforever/RxGalleryFinal.git'
+
+    libraryVersion = '1.1.3'
+
+    developerId = 'playSCforever'
+    developerName = 'ZhangJin Yan'
+    developerEmail = '471749824@qq.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+
 }
-
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-artifacts {
-    archives sourcesJar
-}
-
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-
-    configurations = ['archives']
-    pkg {
-        repo = "maven"
-        name = "RxGalleryFinal"
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ["Apache-2.0"]
-        publish = true
-        version {
-            gpg {
-                passphrase = properties.getProperty("bintray.gpg.password")
-            }
-        }
-    }
-}
+apply from: '../library/bintray/installv1.gradle'
+apply from: '../library/bintray/bintrayv1.gradle'
+//def siteUrl = 'https://github.com/playscforever/RxGalleryFinal'
+//def gitUrl = 'https://github.com/playscforever/RxGalleryFinal.git'
+//group = "cn.yzj.rxgalleryfinal"
+//
+//install {
+//    repositories.mavenInstaller {
+//        pom {
+//            project {
+//                packaging 'aar'
+//
+//                // Add your description here
+//                name 'RxGalleryFinalNew'
+//                description = 'RxGalleryFinalNew desc'
+//                url siteUrl
+//
+//                // Set your license
+//                licenses {
+//                    license {
+//                        name 'The Apache Software License, Version 2.0'
+//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                    }
+//                }
+//                developers {
+//                    developer {
+//                        id 'playSCforever'
+//                        name 'ZhangJin Yan'
+//                        email '471749824@qq.com'
+//                    }
+//                }
+//                scm {
+//                    connection gitUrl
+//                    developerConnection gitUrl
+//                    url siteUrl
+//
+//                }
+//            }
+//        }
+//    }
+//}
+//
+//task sourcesJar(type: Jar) {
+//    from android.sourceSets.main.java.srcDirs
+//    classifier = 'sources'
+//}
+//
+//artifacts {
+//    archives sourcesJar
+//}
+//
+//Properties properties = new Properties()
+//properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//
+//bintray {
+//    user = properties.getProperty("bintray.user")
+//    key = properties.getProperty("bintray.apikey")
+//
+//    configurations = ['archives']
+//    pkg {
+//        repo = "maven"
+//        name = "RxGalleryFinalNew"
+//        websiteUrl = siteUrl
+//        vcsUrl = gitUrl
+//        licenses = ["Apache-2.0"]
+//        publish = true
+//        version {
+//            gpg {
+//                passphrase = properties.getProperty("bintray.gpg.password")
+//            }
+//        }
+//    }
+//}
